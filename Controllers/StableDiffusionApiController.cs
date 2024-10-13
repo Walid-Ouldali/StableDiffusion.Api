@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using StableDiffusion.Api.Models;
-using StableDiffusion.Api.Service;
+using StableDiffusion.Api.Services;
 
 namespace StableDiffusion.Api.Controllers;
 
