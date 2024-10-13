@@ -1,15 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using SixLabors.ImageSharp.Formats.Png;
+﻿using SixLabors.ImageSharp.Formats.Png;
 using StableDiffusion.ML.OnnxRuntime;
 
 namespace StableDiffusion.Api.Service;
 
-public static class StableDiffusionService
+public  class StableDiffusionService
 {
-    public static async Task<byte[]> GenerateImage(string prompt, int numInferenceSteps, float guidanceScale)
+    public async Task<byte[]> GenerateImage()
     {
         var watch = System.Diagnostics.Stopwatch.StartNew();
-
+        var prompt = "A beautiful sunset over the ocean.";
         //Default args
         Console.WriteLine(prompt);
 
@@ -17,9 +16,9 @@ public static class StableDiffusionService
         var config = new StableDiffusionConfig
         {
             // Number of denoising steps
-            NumInferenceSteps = numInferenceSteps,
+            NumInferenceSteps = 12,
             // Scale for classifier-free guidance
-            GuidanceScale = guidanceScale,
+            GuidanceScale = 7.5,
             // The config is defaulted to CUDA. You can override it here if needed.
             // To use DirectML EP install the Microsoft.ML.OnnxRuntime.DirectML and uninstall Microsoft.ML.OnnxRuntime.GPU
             ExecutionProviderTarget = StableDiffusionConfig.ExecutionProvider.Cuda,

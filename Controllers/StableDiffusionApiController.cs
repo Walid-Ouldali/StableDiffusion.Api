@@ -12,8 +12,9 @@ public class StableDiffusionApiController : ControllerBase
 
     [HttpPost]
     [Route("image")]
-    public async Task<IActionResult> GenerateImage([FromBody] ImageGenerationBody generationBody) {
-        var image = await _imageGenerationService.GenerateImage(generationBody.Prompt, generationBody.NumInferenceSteps, generationBody.GuidanceScale);
+    public async Task<IActionResult> GenerateImage([FromBody] ImageGenerationBody generationBody)
+    {
+        var image = await _imageGenerationService.GenerateImage();
         return File(image, "image/png", "generated_image.png");
     }
 }
