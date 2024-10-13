@@ -1,7 +1,7 @@
 ﻿using SixLabors.ImageSharp.Formats.Png;
 using StableDiffusion.ML.OnnxRuntime;
 
-namespace StableDiffusion.Api.Service;
+namespace StableDiffusion.Api.Services;
 
 public class StableDiffusionService
 {
