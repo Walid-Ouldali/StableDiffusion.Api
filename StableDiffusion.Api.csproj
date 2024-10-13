@@ -14,4 +14,7 @@
       <PackageReference Include="Microsoft.ML.OnnxRuntime.Managed" Version="1.15.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\StableDiffusion.ML.OnnxRuntime\StableDiffusion.ML.OnnxRuntime.csproj" />
+    </ItemGroup>
 </Project>

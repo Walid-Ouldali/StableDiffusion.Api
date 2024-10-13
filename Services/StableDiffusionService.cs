@@ -7,8 +7,7 @@ public  class StableDiffusionService
 {
     public async Task<byte[]> GenerateImage()
     {
-        var watch = System.Diagnostics.Stopwatch.StartNew();
-        var prompt = "A beautiful sunset over the ocean.";
+        const string prompt = "A beautiful sunset over the ocean.";
         //Default args
         Console.WriteLine(prompt);
 
@@ -32,10 +31,6 @@ public  class StableDiffusionService
         var image = UNet.Inference(prompt, config);
         using var memoryStream = new MemoryStream();
         await image.SaveAsync(memoryStream, new PngEncoder()); // Save image to memoryStream as PNG
-        // Stop the timer
-        watch.Stop();
-        var elapsedMs = watch.ElapsedMilliseconds;
-        Console.WriteLine("Time taken: " + elapsedMs + "ms");
         return memoryStream.ToArray();
     } 
 }
