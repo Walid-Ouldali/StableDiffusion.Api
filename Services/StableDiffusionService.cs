@@ -7,11 +7,6 @@ public class StableDiffusionService
 {
     public async Task<byte[]> GenerateImage(string prompt, int numInferenceSteps, float guidanceScale)
     {
-        var watch = System.Diagnostics.Stopwatch.StartNew();
-
-        //Default args
-        Console.WriteLine(prompt);
-
         var basePath = Directory.GetCurrentDirectory();
         var config = new StableDiffusionConfig
         {
@@ -32,10 +27,6 @@ public class StableDiffusionService
         var image = UNet.Inference(prompt, config);
         using var memoryStream = new MemoryStream();
         await image.SaveAsync(memoryStream, new PngEncoder()); // Save image to memoryStream as PNG
-        // Stop the timer
-        watch.Stop();
-        var elapsedMs = watch.ElapsedMilliseconds;
-        Console.WriteLine("Time taken: " + elapsedMs + "ms");
         return memoryStream.ToArray();
     } 
 }
