@@ -1,12 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using SixLabors.ImageSharp.Formats.Png;
+﻿using SixLabors.ImageSharp.Formats.Png;
 using StableDiffusion.ML.OnnxRuntime;
 
 namespace StableDiffusion.Api.Service;
 
-public static class StableDiffusionService
+public class StableDiffusionService
 {
-    public static async Task<byte[]> GenerateImage(string prompt, int numInferenceSteps, float guidanceScale)
+    public async Task<byte[]> GenerateImage(string prompt, int numInferenceSteps, float guidanceScale)
     {
         var watch = System.Diagnostics.Stopwatch.StartNew();
 
