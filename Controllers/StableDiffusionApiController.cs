@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using StableDiffusion.Api.Models;
+using StableDiffusion.Api.Service;
 
 namespace StableDiffusion.Api.Controllers;
 
@@ -6,10 +8,12 @@ namespace StableDiffusion.Api.Controllers;
 [Route("/")]
 public class StableDiffusionApiController : ControllerBase
 {
-    
-    [HttpGet]
+    private readonly StableDiffusionService _imageGenerationService = new();
+
+    [HttpPost]
     [Route("image")]
-    public IActionResult GenerateImage() {
-        return Ok("You're on your own kid!");
+    public async Task<IActionResult> GenerateImage([FromBody] ImageGenerationBody generationBody) {
+        var image = await _imageGenerationService.GenerateImage(generationBody.Prompt, generationBody.NumInferenceSteps, generationBody.GuidanceScale);
+        return File(image, "image/png", "generated_image.png");
     }
 }
